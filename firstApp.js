@@ -1,9 +1,14 @@
-const http = require('http')
 const mqtt = require("mqtt");
 
 var client = mqtt.connect("mqtt://broker.hivemq.com", {clientId:"mqttjs01_so"});
 
-// initialize the request
+client.on("connect", function(){
+    console.log("Connected");
+});
+
+client.on("error", function(error){
+    console.log("Can't connect" +error);
+});
 
 // Automatically update sensor value every 2 seconds
 //we use a nested function (function inside another function)
